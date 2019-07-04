@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/chart/js/echarts.common.min.js"></script>
+	<script src="/chart/resource/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 700px;height:450px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+		myChart.setOption({
+			title: {
+		        text: 'SOA服务请求统计',
+		        subtext: '真实数据，即时查询'
+		    },
+			tooltip : {
+				trigger: 'axis',
+				axisPointer : {			// 坐标轴指示器，坐标轴触发有效
+					type : 'shadow'		// 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			legend: {
+				data:['正常','错误','警告','其他','总数'],
+				align: 'right',
+				right: '4%'
+			},
+			grid: {
+				top: '16%',
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis : [
+				{
+					type : 'category',
+					data : ['营销系统','生产系统','财务系统','人资系统','物资系统','GIS']
+				}
+			],
+			yAxis : [
+				{
+					type : 'value'
+				}
+			],
+			series : [
+				{ name:'正常', type:'bar', data:[0,0,0,0,0,0], stack: '日志', barWidth : 30 },
+				{ name:'错误', type:'bar', data:[0,0,0,0,0,0], stack: '日志' },
+				{ name:'警告', type:'bar', data:[0,0,0,0,0,0], stack: '日志' },
+				{ name:'其他', type:'bar', data:[0,0,0,0,0,0], stack: '日志' },
+				{ name:'总数', type:'bar', data:[0,0,0,0,0,0], barWidth : 30 }
+			]
+		});
+
+		$.ajax({
+			type: "GET",
+			url: "/chart/log/chart2",
+			contentType: "application/json",
+			dataType : "json",
+			beforeSend : function( XHR ){
+				myChart.showLoading();
+			},
+			complete : function( XHR, status ){
+				myChart.hideLoading();
+			},
+			success: function( data ){
+				myChart.setOption({
+					series : [
+						{ data : data.body.info },
+						{ data : data.body.error },
+						{ data : data.body.warn },
+						{ data : data.body.qita },
+						{ data : data.body.count }
+					]
+				});
+			}
+		});
+	</script>
+</body>
+</html>

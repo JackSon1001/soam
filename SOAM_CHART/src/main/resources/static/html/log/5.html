@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/chart/js/echarts.common.min.js"></script>
+	<script src="/chart/resource/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 800px;height:450px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+		myChart.setOption({
+			title: {
+				text: '堆叠区域图'
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data: ['SYSTEM', '其他', 'EUREKA', 'CONFIG', 'CHART', 'LOGGER', 'XTZC']
+			},
+			toolbox: {
+				feature: {
+					saveAsImage: {}
+				}
+			},
+			grid: {
+				left: '3%',
+				right: '5%',
+				bottom: '3%',
+				containLabel: true
+			}
+		});
+
+		$.ajax({
+			type: "GET",
+			url: "/chart/log/chart5",
+			contentType: "application/json",
+			dataType : "json",
+			beforeSend : function( XHR ){
+				myChart.showLoading();
+			},
+			complete : function( XHR, status ){
+				myChart.hideLoading();
+			},
+			success: function( data ){
+				myChart.setOption({
+					xAxis: [{
+						type: 'category',
+						boundaryGap: false,
+						data: data.body.days
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'SYSTEM',
+						type: 'line',
+						stack: '总量',
+						areaStyle: { normal: {} },
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						data: data.body.system
+					},
+					{
+						name: '其他',
+						type: 'line',
+						stack: '总量',
+						areaStyle: { normal: {} },
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						data: data.body.qita
+					},
+					{
+						name: 'EUREKA',
+						type: 'line',
+						stack: '总量',
+						areaStyle: { normal: {} },
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						data: data.body.eureka
+					},
+					{
+						name: 'CONFIG',
+						type: 'line',
+						stack: '总量',
+						areaStyle: { normal: {} },
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						data: data.body.config
+					},
+					{
+						name: 'CHART',
+						type: 'line',
+						stack: '总量',
+						areaStyle: { normal: {} },
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						data: data.body.chart
+					},
+					{
+						name: 'LOGGER',
+						type: 'line',
+						stack: '总量',
+						areaStyle: { normal: {} },
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						data: data.body.logger
+					},
+					{
+						name: 'XTZC',
+						type: 'line',
+						stack: '总量',
+						label: {
+							normal: { show: false, position: 'top' }
+						},
+						areaStyle: {
+							normal: {}
+						},
+						data: data.body.xtzc
+					}]
+				});
+			}
+		});
+	</script>
+</body>
+</html>

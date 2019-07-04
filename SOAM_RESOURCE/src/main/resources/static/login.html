@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>SOA监控系统</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="resource/eui/jquery_release.min.js" type="text/javascript"></script>
+  <script src="resource/eui/angular_release.min.js" type="text/javascript"></script>
+  <script src="resource/eui/eui.min.js" type="text/javascript"></script>
+  <link href="resource/eui/eui.css" rel="stylesheet" type="text/css" />
+
+  <script src="app/js/login.js" type="text/javascript"></script>
+  <link href="app/css/login.css" rel="stylesheet" type="text/css" />
+  <script src="resource/common/jquery.md5.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function onSubmit(){
+      $("#hPassword").val($.md5($("#txtPassword").val()));
+      return true;
+    }
+
+    (function(){
+      var origin = window.parent.location.origin;
+      if(window.parent.location.href != window.location.href){
+        window.parent.location.href =  origin + "/login.html";
+      }
+    })()
+  </script>
+
+</head>
+<body ng-controller="LoginController">
+<div ng-keydown="enter($event)">
+  <div class="top">
+    <div class="logo"></div>
+    <div class="fav">添加为收藏夹</div>
+  </div>
+  <div class="middle">
+    <div class="skin">
+      <div>
+        <ul>
+          <a><li ng-repeat="skin in skins" ng-class="skin.class" ng-click="skinChange($index)"></li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="name"></div>
+    <div class="img"></div>
+    <div class="inputbox">
+      <form method="post" action="/login" onsubmit="return onSubmit()">
+        <input  type="text"  name="username" class="input userName" ng-model="yhm"  focus-me="yhmfocus">
+        <input  type="password" id="txtPassword" class="input password"   focus-me="yhmmfocus">
+        <input  type="hidden"  name="password" id="hPassword" class="input password" ng-model="yhmm"  >
+        <input type="submit" value="登  录"  class="botton"/>
+      </form>
+    </div>
+  </div>
+  <div class="bottom">© 2002-2015 云南云电同方科技有限公司 All Rights Reserved.</div>
+</div>
+</body>
+</html>
+
+
+

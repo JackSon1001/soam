@@ -1,0 +1,386 @@
+@charset "utf-8";
+body{
+  width:100% !important;
+  height:100%;
+  overflow:hidden;
+  font-family:\5FAE\8F6F\96C5\9ED1;
+  background:url(../images/login_bg0.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+a {
+  font-size: 1em;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {font-size:1em;color:#9ce0fc;text-decoration:none;cursor:pointer;}
+/*a.gray{font-size:1em; color:#b9b8b8;text-decoration:none;cursor:pointer;}*/
+/*a.gray:hover {font-size:1em;color:#999999;text-decoration:none;cursor:pointer;}*/
+
+.mainPage{
+  display: flex;
+  height: 100%;
+}
+
+.LeftMenu{
+  width:74px;
+  order: 1;
+  border:1px solid #718995;
+  background-color: rgba(46,40,40,0.4);
+  display: flex;
+  flex-direction: column;
+}
+.LeftMenu .Box{
+  padding-top:5px;
+  font-size:0.8em;
+  color:#fff;
+  text-align: center;
+  order: 1;
+}
+
+.LeftMenu .Box .boxBlock{
+  margin: 10px auto;
+}
+
+.LeftMenu .bookMarks{
+  order: 2;
+  flex: 1;
+}
+
+.LeftMenu .bookMarks .bookMarkBlock{
+  margin: 5px 0px;
+}
+
+.LeftMenu .portraitImage{
+  width: 54px;
+  height:55px;
+  background:url(../images/index/index_head.png) no-repeat;
+  margin: 5px auto;
+}
+
+.LeftMenu .portraitImage:hover{background:url(../images/index/index_headh.png) no-repeat;}
+.LeftMenu .line{ width:100%; height:2px; background:url(../images/index/index_line.jpg) repeat-x;}
+
+.LeftMenu .boxIcon{
+  width: 100%;
+  height: 34px;
+  margin: 10px 0px 5px 0px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.LeftMenu .icon{
+  width: 100%;
+  height: 34px;
+  margin: 2px 0px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.LeftMenu .mainImage{background-image: url(../images/index/index_home.png);}
+.LeftMenu .mainImage:hover{background-image: url(../images/index/index_homeh.png);}
+.LeftMenu .myTodo{background-image: url(../images/index/myTodo.png);}
+.LeftMenu .myTodo:hover{background-image: url(../images/index/myTodoh.png);}
+.LeftMenu .myMessage{background-image: url(../images/index/myMessage.png);}
+.LeftMenu .myMessage:hover{background-image: url(../images/index/myMessageh.png);}
+.LeftMenu .browsHistory{background-image: url(../images/index/browsHistory.png);}
+.LeftMenu .browsHistory:hover{background-image: url(../images/index/browsHistoryh.png);}
+
+.LeftMenu .icon:hover {
+  cursor: pointer;
+}
+.LeftMenu .p{width:74px;text-align:center}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  order: 2;
+}
+
+.main .mainCarousel{
+  order: 1;
+  flex: 1;
+}
+
+.carousel {
+  height: 100%;
+}
+
+/*设置列表垂直居中*/
+.carousel-inner {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  height: 70%;
+}
+
+.carousel-inner > .active {
+  height: 100%;
+}
+
+.main .nav{
+  height: 5.5%;
+  order: 2;
+  background-image: url("../images/icons/task_bar_bg_1.png");
+}
+
+/*二级目录样式*/
+.Func{
+  width:80%;
+  /*height:100%;*/
+  margin:auto;
+  overflow:hidden
+}
+.Func ul li{
+  width: 22%;
+  height: 140px;;
+  float:left;
+  list-style:none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  margin-left:1.5%;
+  margin-right: 1.5%;
+  margin-bottom:2%;
+}
+.Func ul li a{
+  line-height: 1em;
+  font-size: 1em;
+  color: #fff;
+  font-weight: bolder;
+  text-align: center;
+  padding: 0px;
+  position: relative;
+  bottom: -100px;
+}
+
+.Func ul li a:hover{
+  opacity:0.6
+}
+
+.Func ul li:hover{
+  cursor:pointer;
+  opacity:0.5
+}
+
+.Stats{
+  width:80%; height:100%;margin:auto;overflow:hidden
+}
+
+.Stats ul li {
+  width: 45%;
+  height: 220px;
+  float:left;
+  list-style:none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  margin-left:1.5%;
+  margin-right: 1.5%;
+  margin-bottom:2%;
+}
+
+.Stats ul li iframe{
+  width: 100%;
+  height: 100%;
+}
+
+.Func ul .Bg0 {background-color: #00a8ec;}
+.Func ul .Bg1 {background-color: #43b51f;}
+.Func ul .Bg2 {background-color: #5d5d5d;}
+.Func ul .Bg3 {background-color: #640f6c;}
+.Func ul .Bg4 {background-color: #d32c2c;}
+.Func ul .Bg5 {background-color: #3c5b9b;}
+.Func ul .Bg6 {background-color: #f58d00;}
+.Func ul .Bg7 {background-color: #00a8ec;}
+.Func ul .Bg8 {background-color: #ffc808;}
+
+.soam-icon-xtzc{background-image: url(../images/index/xtzc.png);}
+.soam-icon-flow{background-image: url(../images/index/flow.png);}
+.soam-icon-flowm{background-image: url(../images/index/flowm.png);}
+.soam-icon-service{background-image: url(../images/index/service.png);}
+.soam-icon-chart{background-image: url(../images/index/chart.png);}
+.soam-icon-logger{background-image: url(../images/index/logger.png);}
+
+.soam-icon-xtzc:hover{background-image: url(../images/index/xtzch.png);}
+.soam-icon-flow:hover{background-image: url(../images/index/flowh.png);}
+.soam-icon-flowm:hover{background-image: url(../images/index/flowmh.png);}
+.soam-icon-service:hover{background-image: url(../images/index/serviceh.png);}
+.soam-icon-chart:hover{background-image: url(../images/index/charth.png);}
+.soam-icon-logger:hover{background-image: url(../images/index/loggerh.png);}
+
+.soam-icon-xtzc-wTitle{background-image: url(../images/window/xtzc-wTitle.png);}
+.soam-icon-flow-wTitle{background-image: url(../images/window/flow-wTitle.png);}
+.soam-icon-flowm-wTitle{background-image: url(../images/window/flowm-wTitle.png);}
+.soam-icon-service-wTitle{background-image: url(../images/window/service-wTitle.png);}
+.soam-icon-chart-wTitle{background-image: url(../images/window/chart-wTitle.png);}
+.soam-icon-logger-wTitle{background-image: url(../images/window/logger-wTitle.png);}
+
+/*任务栏样式*/
+.task-bar-item.active {
+  background-image: url("../images/icons/task_bar_item_cur_1.png");
+}
+.task-bar-item.active:hover{
+  cursor:pointer;
+  background-image: url("../images/icons/task_bar_item_over_1.png");
+}
+
+.task-bar-item {
+  display: inline-block;
+  background-image: url("../images/icons/task_bar_item_nor_1.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 110px;
+  height: 35px;
+  cursor: pointer;
+}
+.task-bar-item:hover{
+  cursor:pointer;
+  background-image: url("../images/icons/task_bar_item_over_1.png");
+}
+
+
+.task-bar-item-icon {
+  float: left;
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: 8px;
+}
+
+.navbar-default .navbar-text {
+  color: #777;
+}
+.task-bar-item-content {
+  font-size: 12px;
+  padding-top: 8px;
+  margin: auto;
+  color: white;
+}
+
+/*设置slides原点大小和位置*/
+.carousel-indicators li {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #000 \9;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+.carousel-indicators .active {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  background-color: #fff;
+}
+.carousel-indicators {
+  bottom: 40px;
+}
+
+.task-bar-item .navClose{
+  width: 15px;
+  height: 15px;
+  float: right;
+  margin: 5px;
+  color: black;
+  font-size: 5px;
+  text-align: center;
+  border-radius: 8px;
+  line-height: 15px;
+}
+
+.task-bar-item .navClose:hover{
+  background-color: red;
+}
+
+/*透明度兼容性，背景透明，文字不透明*/
+@media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+  .Leftdemo,.Pop,.Pop1,.Pop2{
+    background-color:#2e2828;
+    filter:Alpha(opacity=40);
+    position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+    *zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+  }
+  .Leftdemo .Box{
+    position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+  }
+  .Pop,.Pop .tan,.Pop h3,.Pop p,.Pop img,.Pop .t_line{
+    position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+  }
+  .Pop1,.Pop1 .tan,.Pop1 h3,.Pop1 p,.Pop1 .t_line,.Pop1 img{
+    position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+  }
+
+  .Pop2,.Pop2 .tan,.Pop2 h3,.Pop2 p,.Pop2 .t_line,.Pop2 img{
+    position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+  }
+}
+/*结束：左边功能区*/
+
+/* 开始： 左边功能区域弹出框效果*/
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: -10px;
+  margin-top: -10px;
+  border-width: 10px 10px 10px 0;
+  border-right-color: rgba(255,255,255,0.7);
+}
+.tooltip.right {
+  padding: 0;
+  margin-left: 8px;
+}
+
+.tooltip.Pop .tooltip-inner {
+  padding: 5px;
+  border: 1px solid #81a4b6;
+  background-color: rgba(58,104,123,0.7);
+  float: left;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  z-index: 2;
+  font-size: 1.5rem;
+}
+
+.Pop .setBlock{
+  margin: 10px auto 0px;
+  width: 150px
+}
+
+.Pop .setBlock div{
+  margin: 0px 10px;
+  width: 55px;
+  float: left;
+}
+
+.Pop .setBlock div img{
+  margin-bottom: 3px;
+}
+
+/*.Pop1,.Pop2{padding:5px; border:1px solid #81a4b6; background-color:rgba(58,104,123,0.7); position:absolute; float:left; margin:10px 0px 0px 85px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;z-index:2;}*/
+/*.Pop h3,.Pop1 h3,.Pop2 h3{font-size:0.9em; font-weight:normal; color:#fff;text-align: center; line-height:25px; margin:0px; padding:0px;}*/
+/*.Pop p,.Pop1 p,.Pop2 p{font-size:0.9em; font-weight:normal; color:#fff;text-align:left; line-height:25px; margin:0px 20px 0px 0px; padding:0px; float:left}*/
+/*.Pop img,.Pop1 img,.Pop2 img{ border:0px; float:left; margin:5px; padding:0px;}*/
+/*结束： 左边功能区域弹出框效果*/
+
+
+
+
+
+
+

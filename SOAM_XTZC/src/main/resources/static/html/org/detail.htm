@@ -1,0 +1,41 @@
+<div novalidate style="position: relative;" name="confForm">
+	<table style="margin:0px;width:100%;">
+		<tr style="height: 36px;">
+			<td style="text-align: right;width:30%;">机构名称：</td>
+			<td style="width:70%;padding-left:6px;">
+				<input style="width:280px;" ng-model="org.jgmc" ng-disabled="isNotEdit" /><span style="color:red;"> *</span>
+			</td>
+		</tr>
+		<tr style="height: 36px;">
+			<td style="text-align: right">机构简称：</td>
+			<td style="padding-left:6px;">
+				<input style="width:280px;" ng-model="org.jgjc" ng-disabled="isNotEdit" /><span style="color:red;"> *</span>
+			</td>
+		</tr>
+		<tr style="height: 36px;">
+			<td style="text-align: right">上级机构：</td>
+			<td style="padding-left:6px;">
+				<input style="width:280px;" ng-model="parentOrg.label" ng-disabled="true" />
+				<input type="hidden" style="width:280px;" ng-model="org.pid" ng-disabled="true" />
+			</td>
+		</tr>
+		<tr style="height: 36px;">
+			<td style="text-align: right">状态：</td>
+			<td style="padding-left:6px;">
+				<eui-combo-checkbox width="280px" select-height="95px" select-data="ztData" selected-rows="ztValue" disabled=disabled>
+				</eui-combo-checkbox>
+			</td>
+		</tr>
+		<tr style="height: 36px;">
+			<td style="text-align: right">备注：</td>
+			<td style="padding-left:6px;">
+				<textarea style="resize: none;" rows="3" cols="41" ng-model="org.bz" ng-disabled="isNotEdit"></textarea>
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" ng-model="org.orgid" ng-disabled="isNotEdit" />
+	<div class="modal-footer">
+		<button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">确定</button>
+		<button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+	</div>
+</div>

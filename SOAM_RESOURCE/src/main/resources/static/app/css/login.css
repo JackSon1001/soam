@@ -1,0 +1,179 @@
+@charset "utf-8";
+/* CSS Document */
+body{width:100% !important;overflow:hidden;_overflow:hidden;margin:0px auto; padding:0px;font-family:\5FAE\8F6F\96C5\9ED1;background:url(../images/login_bg0.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size:cover;}
+html{overflow:hidden; margin:0px auto; padding:0px;}
+img{ border:0; }
+.skin3lear{ clear:both}
+.hand{ cursor:pointer}
+
+
+a:link,a:visited{font-size:1em; color:#fff;font-weight:bolder;text-decoration:none;}
+a:hover {color:#fff;text-decoration:underline;cursor:pointer;}
+
+.top {
+    width: 100%;
+    height: 51px;
+    background: #063263;
+    border-bottom: 1px solid #6cc7d6;
+}
+.top .logo {
+    width: 181px;
+    height: 52px;
+    background: url(../images/Login_logo.png) no-repeat;
+    border: 0px;
+    margin-left: 15%;
+    float: left;
+}
+.top .fav {
+    height: 27px;
+    float: right;
+    background: url(../images/Login_g.png) no-repeat;
+    color: #fff;
+    font-size: 0.8em;
+    margin-top: 11px;
+    margin-right: 8%;
+    padding-left: 40px;
+    padding-top: 5px;
+}
+
+.middle{
+    margin:60px auto 0px auto;
+}
+.middle .skin {
+    width: 34px;
+    height: 26px;
+    background: url(../images/Login_skinbj.png) no-repeat;
+    z-index: 999999;
+    margin-right: 3%;
+    margin-top: -4.5%;
+    float: right;
+}
+.middle .skin:hover{
+    background:url(../images/Login_skinbjh.png) no-repeat;
+}
+.middle .skin:hover div{
+    display:block;
+}
+.middle .skin div {
+    width: 57px;
+    height: 273px;
+    background: url(../images/Login_skin.png) no-repeat;
+    z-index: 999999;
+    margin-top: 25px;
+    margin-left: -10px;
+    display: none;
+}
+
+.middle .skin div ul{
+    padding: 8px;
+    padding-top: 30px;
+}
+.middle .skin div ul li{
+    width:40px;
+    height:40px;
+    float: left;
+    margin-bottom: 20px;
+}
+.middle .skin div li.skin1{ background:url(../images/Login_skin1.jpg) no-repeat;}
+.middle .skin div li.skin1:hover{ background:url(../images/Login_skin1h.jpg) no-repeat;}
+.middle .skin div li.skin2{ background:url(../images/Login_skin2.jpg) no-repeat;}
+.middle .skin div li.skin2:hover{ background:url(../images/Login_skin2h.jpg) no-repeat;}
+.middle .skin div li.skin3{ background:url(../images/Login_skin3.jpg) no-repeat;}
+.middle .skin div li.skin3:hover{ background:url(../images/Login_skin3h.jpg) no-repeat;}
+.middle .skin div li.skin4{ background:url(../images/Login_skin4.jpg) no-repeat;}
+.middle .skin div li.skin4:hover{ background:url(../images/Login_skin4h.jpg) no-repeat;}
+
+.middle .name{
+    width: 550px;
+    height: 65px;
+    background: url(../images/login/Name.png) no-repeat;
+    margin: 0px auto;
+    background-size: contain;
+}
+.middle .inputbox {
+    width: 360px;
+    height: 240px;
+    border: 1px #fff solid;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 2;
+    margin: 80px auto 0px auto;
+    padding-left: 10px;
+    line-height: 38px;
+    text-align: left;
+    color: #074181;
+    font-weight: bolder;
+    background: #fff;
+    padding-top: 25px;
+}
+
+.inputbox .input {
+    width: 255px;
+    height: 40px;
+    border: 1px #e1e1e3 solid;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 2;
+    margin: 25px auto 5px 40px;
+    padding-left: 50px;
+    line-height: 40px;
+    text-align: left;
+    color: #999;
+    font-weight: bold;
+}
+
+.inputbox .userName{
+    background: url(../images/Login_user.png) no-repeat;
+}
+.inputbox .password{
+    background:url(../images/Login_pd.png) no-repeat;
+}
+.inputbox .input:hover{border:1px #93c273 solid;}
+
+.inputbox .botton {
+    width: 255px;
+    height: 40px;
+    background-color: #4182b8;
+    border: 0px;
+    color: #fff;
+    padding: 0px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    margin: 10px auto 5px 40px;
+    font-size: 22px;
+    font-family: "微软雅黑";
+
+}
+.inputbox .botton:hover {
+   background-color: #4188a6;
+}
+
+.bottom {
+    width: 100%;
+    height: auto;
+    bottom: 8%;
+    position: absolute;
+    margin: 7% auto 0% auto;
+    float: left;
+    font-size: 0.8em;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    border-top: 1px solid #fff;
+    padding-top: 5px;
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+}
+.img0{ width:47px; height:38px;margin:0px auto 0px -50px; background:url(../images/Login_user.png) no-repeat; float:left}
+.img1{ width:47px; height:38px;margin:0px auto 0px -50px; background:url(../images/Login_pd.png) no-repeat; float:left}
+.skin2otton{ width:60px; height:25px; background-color:#ccc; border:0px; color:#fff; line-height:25px; text-align:center; vertical-align:middle; margin:10px 50px auto auto; padding:0px;-moz-border-radius:5px;-webkit-border-radius:2px;border-radius:2px; float:right}
+.middle .img{ width:75px; height:77px; position:relative; background:url(../images/Login_img.png) no-repeat; margin:40px auto -120px auto;z-index: 100;}
+

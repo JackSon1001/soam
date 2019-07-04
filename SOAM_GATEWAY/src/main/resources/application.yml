@@ -1,0 +1,53 @@
+
+zuul:
+  ignored-patterns : /autoconfig,/configprops,/beans,/dump,/env,/env/**,/health,/info,/mappings,/metrics,/metrics/**,/shutdown,/trace
+  routes : 
+    1:
+      path : /xtzc/**/resource/**
+      strip-prefix : true
+      serviceId : SERVICE-RESOURCE
+    2:
+      path : /ws/**/resource/**
+      strip-prefix : true
+      serviceId : SERVICE-RESOURCE
+    3:
+      path : /flow/**/resource/**
+      strip-prefix : true
+      serviceId : SERVICE-RESOURCE
+    4:
+      path : /chart/**/resource/**
+      strip-prefix : true
+      serviceId : SERVICE-RESOURCE
+    5:
+      path : /logger/**/resource/**
+      strip-prefix : true
+      serviceId : SERVICE-RESOURCE
+    resource : 
+      path : /resource/**
+      strip-prefix : false
+      serviceId : SERVICE-RESOURCE
+    xtzc : 
+      path : /xtzc/**
+      strip-prefix : false
+      serviceId : SERVICE-XTZC
+    ws : 
+      path : /ws/**
+      strip-prefix : false
+      serviceId : SERVICE-WS
+    flow : 
+      path : /flow/**
+      strip-prefix : false
+      serviceId : SERVICE-FLOW
+    chart : 
+      path : /chart/**
+      strip-prefix : false
+      serviceId : SERVICE-CHART
+    logger : 
+      path : /logger/**
+      strip-prefix : false
+      serviceId : SERVICE-LOGGER
+    main : 
+      path : /**
+      strip-prefix : false
+      serviceId : SERVICE-RESOURCE
+      

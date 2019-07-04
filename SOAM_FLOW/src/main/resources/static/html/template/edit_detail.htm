@@ -1,0 +1,33 @@
+<!-- 
+/**
+ * 功能模块：系统支撑--》流程模板管理--》编辑流程模板
+ * 描      述：编辑流程模板控制器
+ * 文件名称：editLcmb.htm
+ * 创建   人： 周艳平
+ * 创建时间：2016年10月26日15:06:50
+ * 修改日志：
+ */
+ -->
+
+<div novalidate style="position: relative;" name="confForm">
+	<table style="margin: 10px auto;width:100%;" border="0">
+		<tr style="height: 32px;">
+			<td style="text-align: right;width: 30%;">模板名称：</td>
+			<td style="width: 60%;">
+				<input ng-model="tmp_info.name" style="width:100%;" ng-disabled="isNotEdit" />
+			</td>
+			<td><span style="color:red;"> *</span></td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align: right;">备注：</td>
+			<td>
+				<textarea style="resize: none;width:100%;" rows="3" ng-model="tmp_info.description" ng-disabled="isNotEdit"></textarea>
+			</td>
+		</tr>
+	</table>
+
+	<div class="modal-footer">
+		<button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">确定</button>
+		<button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+	</div>
+</div>

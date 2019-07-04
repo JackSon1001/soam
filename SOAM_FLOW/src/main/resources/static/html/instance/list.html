@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>实例信息</title>
+		<link href="/flow/resource/eui/eui.css" rel="stylesheet" type="text/css" />
+		<script src="/flow/resource/eui/jquery_release.min.js" type="text/javascript"></script>
+		<script src="/flow/resource/eui/angular_release.min.js" type="text/javascript"></script>
+		<script src="/flow/resource/eui/eui.js" type="text/javascript"></script>
+		<script src="/flow/js/constants.js" type="text/javascript"></script>
+		<script src="list.js" type="text/javascript"></script>
+	</head>
+
+	<body ng-controller="euiController">
+		<eui-layout flow="column">
+			<eui-layout-container>
+				<div eui-layout="{ flow:'column', dividerSize:'12' }">
+					<div eui-layout-container size="200px" min-size="0px" max-size="500px">
+						<eui-tree tree-data="ywyNodeTree" tree-control="my_tree" on-click="ywySelectedBrunch"> </eui-tree>
+					</div>
+
+					<div eui-layout-container>
+						<div eui-layout="{ flow:'row', dividerSize:'0' }">
+							<div eui-layout-container size="100px" min-size="100px" style="padding-left:10px;overflow:visible" max-size="120px">
+								<!--  <eui-panel panel-title="查询条件" width = "1100px" height="85px" style="overflow: visible; border:1px solid #85BADF;">-->
+								<div class="eui-table" style="width:1100px;;height:100%;">
+									<table>
+										<tr style="height: 32px; height: 45px;">
+											<td class="" style="width: 80px;" align="right">当前系统：</td>
+											<td class="" style="width: 260px;padding-right:10px;">
+												<eui-combo-checkbox width="260px" select-height="95px" select-data="xtData" selected-rows="xtValue" disabled=disabled>
+												</eui-combo-checkbox>
+											</td>
+											<td class="" style="width: 80px;" align="right">工单号：</td>
+											<td class="" style="width: 260px;padding-right:10px;"><input type="text" style="width: 100%" ng-model="infoParam.gdh"></td>
+
+											<td class="" style="width: 80px;" align="right">所属机构：</td>
+											<td class="" style="width: 260px;padding-right:10px;">
+												<eui-combo-tree width="200px" tree-height="250px" tree-data="orgNodeTree" on-select="orgSelectedBrunch"></eui-combo-tree>
+											</td>
+
+										</tr>
+										<tr>
+											<td class="" style="width: 80px;" align="right">状态：</td>
+											<td class="" style="width: 260px;padding-right:10px;">
+												<eui-combo-checkbox width="260px" select-height="95px" select-data="ztData" selected-rows="ztValue" disabled=disabled>
+												</eui-combo-checkbox>
+											</td>
+											<td colspan="4" class="" style="text-align: right;padding-right:60px;padding-bottom:5px;">
+												<eui-button icon-cls="eui-icon-inquire" ng-click="query()">查询</eui-button>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<!--  </eui-panel>-->
+							</div>
+							<div eui-layout-container>
+								<div style="width: 1110px; height: 480px;padding-left:10px;">
+									<eui-grid grid-options="options" grid-data="data" id="dataGrid" grid-methods="gd_methods"></eui-grid>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</eui-layout-container>
+		</eui-layout>
+	</body>
+
+</html>

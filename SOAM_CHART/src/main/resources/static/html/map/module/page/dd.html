@@ -1,0 +1,719 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>SOA监控图1</title>
+		<script type="text/javascript" src="../../js/echarts/build/dist/echarts-all1.js"></script>
+
+		<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+		<style type="text/css">
+			html {
+				height: 100%;
+				margin: 0;
+			}
+			
+			body {
+				height: 100%;
+				margin: 0;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<!--定义页面图表容器-->
+		<!-- 必须制定容器的大小（height、width） -->
+		<div style="width: 100%;height:100%;">
+			<div id="main" style="width: 98%; height:60%;">
+				<div id="main1" style="width: 40%; height: 100%; float:left"></div>
+				<div id="main2" style="width: 55%; height: 100%; float:right"></div>
+			</div>
+
+			<div id="zt" style="width: 98%; height: 40%;">
+				<div id="Div1" style="width: 40%; height: 100%; float:left"></div>
+				<div id="Div2" style="width: 55%; height: 100%;  float:right"></div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			//------------------------5省地图代码---------------------------------
+			var myChart = echarts.init( document.getElementById( 'main1' ) );
+
+			var option = {
+				tooltip: {
+					trigger: 'item'
+				},
+				toolbox: {
+					show: true,
+					orient: 'vertical',
+					x: 'right',
+					y: 'center',
+					feature: {
+						mark: {
+							show: true
+						},
+						dataView: {
+							show: true,
+							readOnly: false
+						}
+					}
+				},
+				series: [ {
+					tooltip: {
+						trigger: 'item',
+						formatter: '{b}<br/>{c0}'
+					},
+					name: '五省',
+					type: 'map',
+					mapType: 'china',
+					mapLocation: { //显示主地图的位置及其大小
+						x: 'center',
+						y: 'center',
+						height:'90%'
+						/*width: '90%'*/
+					},
+					roam: false, //地图允许拖动
+					selectedMode: 'single',
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
+							}
+						},
+						emphasis: {
+							label: {
+								show: true
+							}
+						}
+					},
+					data: [ {
+							name: '云南',
+							value: 110,
+							selected: false,
+							itemStyle: {
+								normal: {
+									color: '#F64437'
+								}
+							}
+						}, {
+							name: '广西',
+							value: 220,
+							selected: false,
+							itemStyle: {
+								normal: {
+									color: '#F7C655'
+								}
+							}
+						},
+						//{name: '甘肃', selected:false,itemStyle:{ normal:{color:'white'}}},
+
+						{
+							name: '贵州',
+							value: 330,
+							selected: false,
+							itemStyle: {
+								normal: {
+									color: '#F4AE0B'
+								}
+							}
+						}, {
+							name: '广东',
+							value: 440,
+							selected: false,
+							itemStyle: {
+								normal: {
+									color: '#FADD99'
+								}
+							}
+						}, {
+							name: '海南',
+							value: 550,
+							selected: false,
+							itemStyle: {
+								normal: {
+									color: '#3FEEBF'
+								}
+							}
+						}
+					],
+
+				} ],
+				animation: false
+			};
+			myChart.setOption( option, true ); //显示国家地图
+			//------------------------5省地图代码---------------------------------
+
+			//------------------------各省子级地图代码---------------------------------
+			//var ecConfig = require('echarts/config');
+			//myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param){
+			//由于是标签式单文件引入所以这个模块化单文件引入的事件要改变,不能使用require
+			//单击省份事件
+			myChart.on( echarts.config.EVENT.MAP_SELECTED, function( param ) {
+				var selected = param.selected;
+				var selectedProvince;
+				var name;
+				for( var i = 0, l = option.series[ 0 ].data.length; i < l; i++ ) {
+					name = option.series[ 0 ].data[ i ].name;
+					option.series[ 0 ].data[ i ].selected = selected[ name ];
+					if( selected[ name ] ) {
+						selectedProvince = name;
+					}
+				}
+				//alert(selectedProvince); //所选择省的名字
+
+				szjdt( selectedProvince );
+
+				if( typeof selectedProvince == 'undefined' ) {
+					option.series.splice( 1 );
+					option.legend = null;
+					option.dataRange = null;
+					myChart.setOption( option, true ); //如果选择省份不存在则显示国家
+					return;
+				}
+
+				var option2 = {
+					tooltip: {
+						trigger: 'item'
+					},
+					toolbox: {
+						show: true,
+						orient: 'vertical',
+						x: 'right',
+						y: 'center',
+						feature: {
+							mark: {
+								show: true
+							},
+							dataView: {
+								show: true,
+								readOnly: false
+							}
+						}
+					},
+					legend: {
+						x: 'right',
+						data: [ '监控数据' ]
+					},
+					series: [ {
+						name: '监控数据',
+						type: 'map',
+						mapType: selectedProvince,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true
+								}
+							}, //没选择时候省份是否显示
+							emphasis: {
+								label: {
+									show: true
+								}
+							} //选择之后省份是否显示
+						},
+						mapLocation: { //显示子地图的位置及其大小
+							x: 'center',
+							y: 'center',
+							height:'90%'
+							/*width: '60%'*/
+						},
+						roam: false, //地图允许拖动
+						tooltip: {
+							trigger: 'item',
+							formatter: '{b}<br/>{c}<br/>{d}'
+						},
+						data: [
+
+							{
+								name: '遵义市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '黔东南苗族侗族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '毕节地区',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '黔南布依族苗族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '铜仁地区',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '黔西南布依族苗族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '六盘水市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '安顺市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '贵阳市',
+								value: Math.round( Math.random() * 1000 )
+							},
+
+							{
+								name: '普洱市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '红河哈尼族彝族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '文山壮族苗族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '曲靖市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '楚雄彝族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '大理白族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '临沧市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '迪庆藏族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '昭通市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '昆明市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '丽江市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '西双版纳傣族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '保山市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '玉溪市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '怒江傈僳族自治州',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '德宏傣族景颇族自治州',
+								value: Math.round( Math.random() * 1000 )
+							},
+
+							{
+								name: '百色市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '河池市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '桂林市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '南宁市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '柳州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '崇左市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '来宾市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '玉林市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '梧州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '贺州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '钦州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '贵港市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '防城港市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '北海市',
+								value: Math.round( Math.random() * 1000 )
+							},
+
+							{
+								name: '清远市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '韶关市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '湛江市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '梅州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '河源市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '肇庆市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '惠州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '茂名市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '江门市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '阳江市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '云浮市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '广州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '汕尾市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '揭阳市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '珠海市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '佛山市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '潮州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '汕头市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '深圳市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '东莞市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '中山市',
+								value: Math.round( Math.random() * 1000 )
+							},
+
+							{
+								name: '儋州市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '文昌市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '乐东黎族自治县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '三亚市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '琼中黎族苗族自治县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '东方市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '海口市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '万宁市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '澄迈县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '白沙黎族自治县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '琼海市',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '昌江黎族自治县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '临高县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '陵水黎族自治县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '屯昌县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '定安县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '保亭黎族苗族自治县',
+								value: Math.round( Math.random() * 1000 )
+							}, {
+								name: '五指山市',
+								value: Math.round( Math.random() * 1000 )
+							},
+						]
+					} ]
+				};
+
+				//------------控制颜色------------
+				//                option.dataRange = {
+				//                    orient: 'horizontal',
+				//                    x: 'right',
+				//                    min: 0,
+				//                    max: 2000,
+				//                    color: ['red', 'orange'],
+				//                    text: ['高', '低'],           // 文本，默认为数值文本
+				//                    splitNumber: 0
+				//                };
+				//------------控制颜色------------
+
+				var myChart2 = echarts.init( document.getElementById( 'main2' ) );
+				myChart2.setOption( option2, true ); //显示省地图
+			} );
+
+			//选择地级市的单击事件
+			myChart.on( echarts.config.EVENT.CLICK, function( param ) {
+				var seriesName = param.seriesName;
+
+				if( seriesName.trim() == "监控数据" || seriesName.trim() == "" ) { //由于全国地图和省地图都要触发这个事                                                                                                         件，所以要判断是省还是地级市
+					//alert(param.name); //地级市的名字
+
+				}
+			} );
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption( option, true ); //显示
+			//------------------------各省子级地图代码---------------------------------
+
+			//------------------------5省树状图代码---------------------------------
+			// 基于准备好的dom，初始化echarts图表
+			var txChart = echarts.init( document.getElementById( 'Div1' ) );
+			option3 = {
+				title: {
+					text: '整体监控图',
+					subtext: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					data: [ '业务量', '异常量' ]
+				},
+				toolbox: {
+					show: true,
+					feature: {
+						mark: {
+							show: true
+						},
+						dataView: {
+							show: true,
+							readOnly: false
+						},
+						magicType: {
+							show: true,
+							type: [ 'line', 'bar' ]
+						},
+						restore: {
+							show: true
+						},
+						saveAsImage: {
+							show: true
+						}
+					}
+				},
+				calculable: true,
+				xAxis: [ {
+					type: 'category',
+					data: [ '云南', '广东', '广西', '贵州', '海南' ]
+				} ],
+				yAxis: [ {
+					type: 'value'
+				} ],
+				series: [ {
+					name: '业务量',
+					type: 'bar',
+					data: [ 110, 220, 330, 440, 550 ],
+					markPoint: {
+						data: [ {
+							type: 'max',
+							name: '最大值'
+						}, {
+							type: 'min',
+							name: '最小值'
+						} ]
+					},
+					markLine: {
+						data: [ {
+							type: 'average',
+							name: '平均值'
+						} ]
+					}
+				}, {
+					name: '异常量',
+					type: 'bar',
+					data: [ 2, 11, 21, 33, 52 ],
+					markPoint: {
+						data: [ {
+							name: '年最高',
+							value: 52,
+							xAxis: 7,
+							yAxis: 183,
+							symbolSize: 18
+						}, {
+							name: '年最低',
+							value: 2,
+							xAxis: 11,
+							yAxis: 3
+						} ]
+					},
+					markLine: {
+						data: [ {
+							type: 'average',
+							name: '平均值'
+						} ]
+					}
+				} ]
+			};
+			// 为echarts对象加载数据 
+			txChart.setOption( option3, true );
+
+			//------------------------5省树状图代码---------------------------------
+
+			//------------------------省子级树状图代码---------------------------------
+			//基于准备好的dom，初始化echarts图表
+
+			function szjdt( selected ) {
+				var data1;
+				var xzs = selected;
+
+				if( xzs == '云南' ) {
+					data1 = [ '普洱', '红河', '文山', '红河', '曲靖', '楚雄', '大理', '临沧', '迪庆', '昭通', '昆明', '丽江', '西双版纳', '保山', '玉溪', '怒江', '德宏' ];
+				}
+				if( xzs == '广西' ) {
+					data1 = [ '百色', '河池', '桂林', '南宁', '柳州', '崇左', '来宾', '玉林', '梧州', '贺州', '钦州', '贵港', '防城港', '北海' ];
+				}
+
+				if( xzs == '贵州' ) {
+					data1 = [ '遵义', '黔东南', '毕节', '黔南布依', '铜仁', '黔西南布', '六盘水', '安顺', '贵阳' ];
+				}
+
+				if( xzs == '广东' ) {
+					data1 = [ '清远', '汕头', '深圳', '中山', '潮州', '韶关', '湛江', '梅州', '河源', '肇庆', '惠州', '茂名', '江门', '阳江', '云浮', '广州', '汕尾', '揭阳', '珠海', '佛山', '潮州' ];
+				}
+
+				if( xzs == '海南' ) {
+					data1 = [ '儋州', '文昌', '乐东', '三亚', '琼中', '东方', '海口', '万宁', '澄迈', '白沙黎', '琼海', '昌江', '陵水黎', '屯昌', '定安', '保亭黎', '五指山' ];
+				}
+
+				var txChart = echarts.init( document.getElementById( 'Div2' ) );
+				option4 = {
+					title: {
+						text: '省级详细监控图',
+						subtext: ''
+					},
+					tooltip: {
+						trigger: 'axis'
+					},
+					legend: {
+						data: [ '业务量', '异常量' ]
+					},
+					toolbox: {
+						show: true,
+						feature: {
+							mark: {
+								show: true
+							},
+							dataView: {
+								show: true,
+								readOnly: false
+							},
+							magicType: {
+								show: true,
+								type: [ 'line', 'bar' ]
+							},
+							restore: {
+								show: true
+							},
+							saveAsImage: {
+								show: true
+							}
+						}
+					},
+					calculable: true,
+					xAxis: [ {
+						type: 'category',
+						data: data1
+					} ],
+					yAxis: [ {
+						type: 'value'
+					} ],
+					series: [ {
+						name: '业务量',
+						type: 'bar',
+						data: [ 215, 211, 113, 216, 287, 10, 259, 218, 53, 121, 13, 3, 53, 132, 113, 113, 153, 212, 123, 123, 253, 212, 213, 113 ],
+						markPoint: {
+							data: [ {
+								type: 'max',
+								name: '最大值'
+							}, {
+								type: 'min',
+								name: '最小值'
+							} ]
+						},
+						markLine: {
+							data: [ {
+								type: 'average',
+								name: '平均值'
+							} ]
+						}
+					}, {
+						name: '异常量',
+						type: 'bar',
+						data: [ 12, 21, 17, 22, 31, 1, 27, 35, 5, 1, 11, 33, 31, 21, 38, 69, 52, 34, 54, 40, 35, 65, 55, 48 ],
+						markPoint: {
+							data: [ {
+								name: '异常最高',
+								/*value: 5,
+								xAxis: 7,
+								yAxis: 183,
+								symbolSize: 18,*/
+								type: 'max'
+							}, {
+								name: '异常最低',
+								/*value: 0,
+								xAxis: 11,
+								yAxis: 3,*/
+								type: 'min'
+							} ]
+						},
+						markLine: {
+							data: [ {
+								type: 'average',
+								name: '平均值'
+							} ]
+						}
+					} ]
+				};
+				// 为echarts对象加载数据 
+				txChart.setOption( option4, true );
+			}
+			//------------------------省子级树状图代码---------------------------------
+		</script>
+	</body>
+
+</html>

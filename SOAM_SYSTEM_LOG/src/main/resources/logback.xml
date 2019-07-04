@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+根节点<configuration>包含的属性： scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。 
+scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。 
+debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 
+-->
+<configuration>
+
+	<!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%highlight([%-5level]) %highlight(%d{yyyy-MM-dd HH:mm:ss.SSS}) %cyan([%-45.45logger:%-3.3line]) [%.10thread] - %msg%n
+				<!-- [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n -->
+				<!-- [%-5level] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} [%line] - %msg%n -->
+			</pattern>
+			<!-- 常用的Pattern变量 -->
+			<!--  <pattern>
+			   %d{yyyy-MM-dd HH:mm:ss} [%level] - %msg%n
+			   Logger: %logger
+			   Class: %class
+			   File: %file
+			   Caller: %caller
+			   Line: %line
+			   Message: %m
+			   Method: %M
+			   Relative: %relative
+			   Thread: %thread
+			   Exception: %ex
+			   xException: %xEx
+			   nopException: %nopex
+			   rException: %rEx
+			   Marker: %marker
+			   %n
+			</pattern>-->
+		</encoder>
+	</appender>
+
+	<appender name="appender" class="com.ydtf.soam.system.logger.LogAppender"></appender>
+
+	<!-- 日志级别 -->
+	<root>
+		<level value="info" />
+		<appender-ref ref="console" />
+		<appender-ref ref="appender" />
+	</root>
+
+</configuration> 

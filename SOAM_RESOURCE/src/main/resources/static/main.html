@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>SOA监控系统</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="resource/eui/jquery_release.min.js" type="text/javascript"></script>
+    <script src="resource/eui/angular_release.min.js" type="text/javascript"></script>
+    <script src="resource/eui/eui.min.js" type="text/javascript"></script>
+    <link href="resource/eui/eui.css" rel="stylesheet" type="text/css" />
+
+    <script src="app/js/main.js" type="text/javascript"></script>
+    <script src="app/js/directive/window/window.js" type="text/javascript"></script>
+    <link href="app/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="app/css/window.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div ng-controller="MainController" class="mainPage">
+    <div class="LeftMenu">
+        <div class="Box">
+            <a eui-tooltip-template="'popoverDiv1.html'" tooltip-class="Pop" tooltip-trigger="mouseenter"
+               tooltip-popup-close-delay='2000' tooltip-placement="right"><div class="portraitImage"></div></a>
+            <div class="line"></div>
+            <a><div class="boxIcon mainImage" ng-click="showMainPage()"></div></a>
+            <div class="line"></div>
+            <div ng-repeat="item in items" class="boxBlock">
+                <eui-menus-icon options="item"></eui-menus-icon>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="bookMarks">
+            <eui-scrollbar move-height="80" other-height="boxHeight">
+                <div ng-show="isShow" ng-repeat="modal in bookMarksList" class="bookMarkBlock"
+                     ng-click="loadDialog({path: modal.path, id: modal.id, name: modal.name, icon: modal.icon + '-wTitle'})">
+                    <div ng-class="modal.icon" class="icon"></div>
+                    <div><p class="p"><a ng-bind="modal.name"></a></p></div>
+                </div>
+            </eui-scrollbar>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="mainCarousel">
+            <eui-carousel interval="myInterval" no-wrap="noWrapSlides">
+                <eui-slide ng-repeat="slide in slides" active="slide.active">
+                    <div ng-include="slide.template" style="height: 100%"></div>
+                </eui-slide>
+            </eui-carousel>
+            <div ng-repeat="lazy in loaded" style="height: 100%">
+                <div ng-include="lazy.template" style="height: 100%"></div>
+            </div>
+        </div>
+
+        <nav class="nav" role="navigation">
+            <div class="container-fluid">
+                <div ng-repeat="nav in loaded" ng-click="activeWindow($event, nav.id, 'min')" ng-class="{active: nav.id === currModal}" class="task-bar-item">
+                    <div class="{{nav.icon}} task-bar-item-icon"></div>
+                    <div class="navbar-text task-bar-item-content"><span>{{nav.name}}</span></div>
+                    <span class="navClose" ng-click="activeWindow($event, nav.id, 'close')">X</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script type="text/ng-template" id="popoverDiv1.html">
+    <div>
+        <span ng-bind="orgName"></span><br/>
+        <span ng-bind="yhm"></span>
+    </div>
+    <div class="setBlock">
+        <div ng-click="setInfo()">
+            <img src="app/images/index/index_s.png">
+            <a>设置</a>
+        </div>
+        <div ng-click="logout()">
+            <img src="app/images/index/index_q.png">
+            <a>退出</a>
+        </div>
+    </div>
+</script>
+</body>
+</html>

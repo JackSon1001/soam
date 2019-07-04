@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/chart/js/echarts.common.min.js"></script>
+	<script src="/chart/resource/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 100%;height:600px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+		myChart.setOption({
+		    title: {
+		        text: 'SOAM系统请求&日志监控图',
+		        subtext: '来自真实即时数据',
+		        x: 'center'
+		    },
+		    tooltip: {
+		        trigger: 'axis',
+		        axisPointer: {
+		            animation: false
+		        }
+		    },
+		    legend: {
+		        data:['请求','日志'],
+		        x: 'left'
+		    },
+		    toolbox: {
+		        feature: {
+		            dataZoom: {
+		                yAxisIndex: 'none'
+		            },
+		            restore: {},
+		            saveAsImage: {}
+		        }
+		    },
+		    dataZoom: [
+		        {
+		            show: true,
+		            realtime: true,
+		            start: 0,
+		            end: 100,
+		            xAxisIndex: [0, 1]
+		        },
+		        {
+		            type: 'inside',
+		            realtime: true,
+		            start: 0,
+		            end: 100,
+		            xAxisIndex: [0, 1]
+		        }
+		    ],
+		    grid: [{
+		        left: 50,
+		        right: 50,
+		        height: '35%'
+		    }, {
+		        left: 50,
+		        right: 50,
+		        top: '55%',
+		        height: '35%'
+		    }],
+		    xAxis : [
+		        {
+		            type : 'category',
+		            boundaryGap : false,
+		            axisLine: {onZero: true},
+		            data: []
+		        },
+		        {
+		            gridIndex: 1,
+		            type : 'category',
+		            boundaryGap : false,
+		            axisLine: {onZero: true},
+		            data: [],
+		            position: 'top'
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            name : '请求量',
+		          //max : 500,
+		            type : 'value'
+		            
+		        },
+		        {
+		            gridIndex: 1,
+		            name : '日志量',
+		            type : 'value',
+		            inverse: true
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'请求量',
+		            type:'line',
+		            symbolSize: 8,
+		            hoverAnimation: false,
+		            data:[]
+		        },
+		        {
+		            name:'日志量',
+		            type:'line',
+		            xAxisIndex: 1,
+		            yAxisIndex: 1,
+		            symbolSize: 8,
+		            hoverAnimation: false,
+		            data: []
+		        }
+		    ]
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "/chart/request/chart2",
+			contentType: "application/json",
+			dataType : "json",
+			data : JSON.stringify({
+				minute : 60 * 6,
+				quantum : 10
+			}),
+			beforeSend : function( XHR ){
+				myChart.showLoading();
+			},
+			complete : function( XHR, status ){
+				myChart.hideLoading();
+			},
+			success: function( data ){
+				console.log(data.body);
+				myChart.setOption({
+					xAxis : [
+				        { data: data.body.times },
+				        { data: data.body.times }
+				    ],
+				    series : [
+						{ data : data.body.request },
+				        { data : data.body.log }
+				    ]
+				});
+			}
+		});
+	</script>
+</body>
+</html>

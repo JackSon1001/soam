@@ -1,0 +1,55 @@
+<!-- 
+/**
+ * 功能模块：系统支撑--》资源管理
+ * 描      述：编辑资源界面
+ * 文件名称：edit.htm
+ * 创建   人： 周艳平
+ * 创建时间： 2016年10月17日11:01:34
+ * 修改日志：
+ */
+ -->
+ 
+<div novalidate style="position: relative;"  name="confForm" >
+    <table style="margin: 10px auto;width:100%;" border="0">
+        <tr style="height: 32px;">
+            <td style="text-align: right;width: 15%;" >资源名称：</td>
+            <td style="width: 35%;" >
+                <input ng-model="zy.zymc" style="width:80%;" ng-disabled="isNotEdit"/><span style="color:red;"> *</span>
+            </td>
+            <td style="text-align: right;width: 15%;">资源类别：</td>
+            <td style="width: 35%;">
+            	<eui-combo-checkbox style="float:left;" width = "167px" select-height="50px"
+                               select-data="zylbData" selected-rows= "zylbValue" 
+                               disabled="isNotEdit"></eui-combo-checkbox>            
+            	<span style="color:red;"> *</span>
+            </td>
+        </tr>
+        <tr style="height: 32px;">
+            <td style="text-align: right">模版或URL：</td>
+            <td>
+                <input ng-model="zy.wjbz" style="width:80%;" ng-disabled="isNotEdit"/><span style="color:red;"> *</span>
+            </td>
+            <td style="text-align: right">上级资源：</td>
+            <td><input  ng-model="zy.pid" style="width:80%;" ng-disabled="true"/></td>
+        </tr>
+        <tr style="height: 32px;">
+        	<td style="text-align: right">关联角色：</td>
+        	<td>
+        		<eui-combo-checkbox select-height="150px" width = "167px" ng-disabled="isNotEdit" 
+        			disabled="isNotEdit" select-data="gljsData" 
+        			selected-rows= "gljsValue" checkbox="true"></eui-combo-checkbox>
+        	</td>
+        	<td style="text-align: right">状态：</td>
+        	<td>
+			    <eui-combo-checkbox style="float:left;" width = "167px" select-height="100px"
+                           select-data="zyztData" selected-rows= "zyztValue" 
+                           disabled="isNotEdit"></eui-combo-checkbox>
+        	</td>
+        </tr>
+    </table>
+            
+    <div class="modal-footer">
+        <button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">确定</button>
+        <button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+    </div>
+</div>

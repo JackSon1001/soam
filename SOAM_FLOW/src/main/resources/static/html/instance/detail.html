@@ -1,0 +1,53 @@
+<!-- 
+/**
+ * 功能模块：流程查看
+ * 描      述：流程查看
+ * 文件名称：detail.html
+ * 创建   人： 周艳平
+ * 创建时间： 2016年11月30日10:30:31
+ * 修改日志：
+ */
+ -->
+
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>流程查看</title>
+		
+		<eui-resource src="detail.js"></eui-resource>
+		<script src="/flow/resource/common/boot.js" type="text/javascript"></script>
+	</head>
+
+	<body ng-controller="euiController">
+		<div style="width:65%;float:left;height:100%;padding-bottom: 3px;">
+			<iframe id="flowiframe" name="flowiframe" src="" style="width:100%;height:100%;border:0px;"></iframe>
+		</div>
+
+		<div style="width:35%;float:left;padding-right:1px;">
+			<div style="height:350px;width:100%;">
+				<eui-grid grid-options="options" grid-data="data" grid-methods="gd_methods"></eui-grid>
+			</div>
+
+			<eui-block title="业务数据" >
+				<div style="height:200px;overflow:auto;">
+					<table id="ywsjTbl" style="margin: 10px auto;width:100%;" border="0">
+						<!-- <tr style="height: 32px;">
+			            <td style="text-align: right;width: 15%;" >节点名称：</td>
+			            <td style="width: 35%;" >
+			                <input ng-model="process.name" style="width:100%;" ng-disabled="true"/>
+			            </td>
+			            <td style="text-align: right;width: 15%;" >类型：</td>
+			            <td style="width: 35%;" >
+			                <input ng-model="process.type" style="width:100%;" ng-disabled="true"/>
+			            </td>
+			        </tr> -->
+					</table>
+				</div>
+			</eui-block>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,66 @@
+<html lang="en" ng-app="ui.bootstrap.demo">
+<head>
+    <script src="/scripts/jquery.js"></script>
+    <script src="/scripts/angular.js" type="text/javascript"></script>
+    <!--<script src="/scripts/ui-bootstrap-tpls-0.14.3-SNAPSHOT.js" type="text/javascript"></script>-->
+    <script src="/dist/ui-bootstrap-tpls-0.0.1.js"></script>
+
+    <script src="/scripts/app.js" type="text/javascript"></script>
+    <link href="/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/ui.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../panel/panel.css">
+    <link rel="stylesheet" href="../../button/button.css">
+    <script>
+        angular.module('ui.bootstrap.demo').controller('WindowDemoCtrl', function ($scope) {
+
+            $scope.loaded = [];
+            $scope.loadDialog = function (menu) {
+                var isLoad = false;
+                for(var i=0; i< $scope.loaded.length; i++) {
+                    if($scope.loaded[i].template === menu.path) {
+                        isLoad = true;
+                        break;
+                    }
+                }
+                if (!isLoad) {
+                    $scope.currPath = $scope.getTitle(menu.name);
+                    $scope.loaded.push({template: menu.path, title: menu.name, path: $scope.currPath,icon: menu.icon});
+                }
+            };
+
+            $scope.getTitle = function(title) {
+                if (!$scope.categoryName) {
+                    $scope.categoryName = '管理';
+                }
+                return $scope.categoryName+' > '+title;
+            };
+
+            $scope.$on('EVENT_PANEL_WINDOW.close', function(evt, next, current) {
+                for(var i=0; i< $scope.loaded.length; i++) {
+                    var titleArr = next.title.split(' > ');
+                    if($scope.loaded[i].title === titleArr[titleArr.length-1]) {
+                        $scope.loaded.splice(i, 1);
+                    }
+                }
+            });
+
+            $scope.activeWindow = function(title) {
+                $scope.currPath = title;
+                $rootScope.$broadcast(title);
+            };
+
+        });
+    </script>
+</head>
+<body>
+
+<div ng-controller="WindowDemoCtrl">
+
+    <div ng-repeat="lazy in loaded">
+        <div ng-include="lazy.template" ng-init="title = getTitle(lazy.title)">
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-default" ng-click="loadDialog({path: 'window/Test1.html', name: 'test1', icon: ''})">Open test1!</button>
+    <button type="button" class="btn btn-default" ng-click="loadDialog({path: 'window/FileUploadTest.html', name: 'FileUploadTest', icon: ''})">Open FileUploadTest</button>
+</div>

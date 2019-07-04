@@ -1,0 +1,36 @@
+<div window-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal fade" ng-class="{in: animate}" ng-style="{'z-index': 1020 + openOffset, display: 'block'}">
+    <div class="eui-window">
+        <div class="eui-window-title">
+            <ul>
+                <li class="listbox">
+                    <div class="icon" ng-class= "options.modInfo.modIcon"></div>
+                    <div class="name" ng-bind="options.modInfo.modName"></div>
+                </li>
+                <li class="line"></li>
+                <li class="leftArrow" ng-click="moreleft()" ng-show="showArrow"></li>
+                <li class="meunset" id="_scrollmenuset" >
+                    <ul style="width: 1400px;">
+                        <li ng-repeat="mod in options.modData track by $index" >
+                            <div class="secMenu" ng-click="select(mod, $index, $event)" ng-mouseover="setMeunHover($event)" ng-mouseleave="setMeunLeave($event)">
+                                {{mod.name}}
+                            </div>
+                            <div class="lineT"></div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="rightArrow" ng-click="moreright()" ng-show="showArrow"></li>
+            </ul>
+            <span class="eui-wTools">
+                <span class="eui-wTools-min" ng-show="icon.min"  ng-click="minWindow()"></span>
+                <span class="eui-wTools-max" ng-show="icon.max" ng-click="maxWindow()"></span>
+                <span class="eui-wTools-close" ng-show="icon.close" ng-click="close($event)"></span>
+            </span>
+        </div>
+        <div class="eui-window-content">
+            <div class="ContentBox" window-transclude></div>
+        </div>
+        <div class="eui-window-foot">
+            <!--<span>{{windowFoot}}</span>-->
+        </div>
+    </div>
+</div>

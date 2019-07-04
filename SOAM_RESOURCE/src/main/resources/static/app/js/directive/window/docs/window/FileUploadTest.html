@@ -1,0 +1,18 @@
+<panel-window style="width: 500px" buttons="min max close">
+    <div>
+      <label for="fileToUpload">选择上传文件(可多选)</label><br />
+      <input type="file" multiple id="fileToUpload" style="display: inline;float: left;"/>
+      <input type="button" ng-click="uploadFile()" ng-disabled="upload_disabled" value="上传" style="display: inline;float: left;"/>
+    </div>
+    <div style="height: 300px;overflow-y: auto;">
+      <div ng-repeat="file in files">
+        <div id="fileInfo">{{file.fileName}},&nbsp;&nbsp;{{file.fileSizeC}}</div>
+        <div class="progress" style="display: inline;float: left;width: 100%;">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{file.percentComplete}}" aria-valuemin="0" aria-valuemax="100"
+               style="width: {{file.percentComplete}}%;">
+            {{file.percentComplete}}%
+          </div>
+        </div>
+      </div>
+    </div>
+</panel-window>

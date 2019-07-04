@@ -1,0 +1,132 @@
+{
+	"code": 0,
+	"message": "ok",
+	"body": {
+		"permission": {
+			"modules": [
+				{
+					"id": "xtzc",
+					"menus": [
+						{
+							"name": "机构管理",
+							"url": "http://123.207.3.51/xtzc/html/org/index.html"
+						}, {
+							"name": "用户管理",
+							"url": "http://123.207.3.51/xtzc/html/user/index.html"
+						}, {
+							"name": "角色管理",
+							"url": "http://123.207.3.51/xtzc/html/role/index.html"
+						}, {
+							"name": "资源管理",
+							"url": "http://123.207.3.51/xtzc/html/zy/index.html"
+						}, {
+							"name": "业务域管理",
+							"url": "http://123.207.3.51/xtzc/html/ywy/index.html"
+						}
+					]
+				}, {
+					"id": "flow",
+					"menus": [
+						{
+							"name": "流程建模",
+							"url": "http://123.207.3.51/flow/html/template/editor.html"
+						}, {
+							"name": "流程监控",
+							"url": "http://123.207.3.51/flow/html/instance/list.html"
+						}, {
+							"name": "流程监控",
+							"url": "http://123.207.3.51/flow/html/instance/detail.html?iid=18&haveTool=true"
+						}
+					]
+				}, {
+					"id": "flowm",
+					"menus": [
+						{
+							"name": "流程建模",
+							"url": "http://123.207.3.51/flow/html/template/editor.html"
+						}, {
+							"name": "流程监控",
+							"url": "http://123.207.3.51/flow/html/instance/detail.html?iid=18&haveTool=true"
+						}
+					]
+				}, {
+					"id": "service",
+					"menus": [
+						{
+							"name": "流程建模",
+							"url": "http://123.207.3.51/flow/html/template/editor.html"
+						}, {
+							"name": "流程监控",
+							"url": "http://123.207.3.51/flow/html/instance/detail.html?iid=18&haveTool=true"
+						}
+					]
+				}, {
+					"id": "chart",
+					"menus": [
+						{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						}, {
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						},{
+							"name": "统计报表一",
+							"url": "http://123.207.3.51/chart/html/map/module/page/dd.html"
+						}
+					]
+				}, {
+					"id": "logger",
+					"menus": [
+						{
+							"name": "日志查询",
+							"url": "http://123.207.3.51/xtzc/html/log/index.html"
+						}, {
+							"name": "请求查询",
+							"url": "http://123.207.3.51/flow/html/instance/detail.html?iid=18&haveTool=true"
+						}
+					]
+				}
+			],
+			"statistics": {}
+		},
+		"user": {
+			"userid": 33,
+			"yhm": "张磊",
+			"roleName": "管理员",
+			"orgName": "南方电网1",
+			"bz": "aa"
+		},
+		"bookmarks": [
+			"xtzc",
+			"flow",
+			"flowm",
+			"service",
+			"chart",
+			"logger"
+		]
+	}
+}

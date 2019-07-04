@@ -1,0 +1,30 @@
+<div novalidate style="position: relative;" name="confForm">
+	<table style="margin: 10px; width:100%;" border="0">
+		<tr style="height: 32px;">
+			<td style="text-align:right;width:15%;">id ：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.id" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+			<td style="text-align:right;width:15%;">instance：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.instance" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align:right;width:15%;">logger：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.logger" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+			<td style="text-align:right;width:15%;">level：</td>
+			<td style="width: 35%;">
+				<!-- <input ng-model="data.level" style="width:80%;" ng-disabled="isNotEdit" /> -->
+				<eui-combo-checkbox width = "80%" select-height="85px"
+                                select-data="cbxData" selected-rows= "selectedRows" disabled=disabled></eui-combo-checkbox>
+			</td>
+		</tr>
+	</table>
+	<div class="modal-footer">
+		<button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">查询</button>
+		<button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+	</div>
+</div>

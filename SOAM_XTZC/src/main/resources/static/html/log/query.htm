@@ -1,0 +1,38 @@
+<div novalidate style="position: relative;" name="confForm">
+	<table style="margin: 10px; width:100%;" border="0">
+		<tr style="height: 32px;">
+			<td style="text-align:right;width:15%;">service ：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.service" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+			<td style="text-align:right;width:15%;">instance：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.instance" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align:right;width:15%;">method：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.method" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+			<td style="text-align:right;width:15%;">servletPath：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.servletPath" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align:right;width:15%;">host：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.host" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+			<td style="text-align:right;width:15%;">localPort：</td>
+			<td style="width: 35%;">
+				<input ng-model="data.localPort" style="width:80%;" ng-disabled="isNotEdit" />
+			</td>
+		</tr>
+	</table>
+	<div class="modal-footer">
+		<button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">查询</button>
+		<button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+	</div>
+</div>

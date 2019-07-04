@@ -1,0 +1,41 @@
+<div novalidate style="position: relative;" name="infoForm">
+	<div style="height:350px; overflow-y:auto">
+		<table style="margin:10px; width:95%;" border="0">
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">id ：</td>
+				<td style="width:75%;"><input ng-model="info.id" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">service ：</td>
+				<td style="width:75%;"><input ng-model="info.service" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">instance ：</td>
+				<td style="width:75%;"><input ng-model="info.instance" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">level ：</td>
+				<td style="width:75%;"><input ng-model="info.level" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">message ：</td>
+				<td style="width:75%;"><input ng-model="info.message" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">logger ：</td>
+				<td style="width:75%;"><input ng-model="info.logger" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">thread ：</td>
+				<td style="width:75%;"><input ng-model="info.thread" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="text-align:right;width:25%;">date ：</td>
+				<td style="width:75%;"><input ng-model="info.date" ng-disabled="true" style="width:95%;" /></td>
+			</tr>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<eui-button icon-cls="eui-icon-close" ng-click="cancel()">关闭</eui-button>
+	</div>
+</div>

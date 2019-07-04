@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>请求日志信息查询</title>
+		<link href="/xtzc/resource/eui/eui.css" rel="stylesheet" type="text/css" />
+		<script src="/xtzc/resource/eui/jquery_release.min.js" type="text/javascript"></script>
+		<script src="/xtzc/resource/eui/angular_release.min.js" type="text/javascript"></script>
+		<script src="/xtzc/resource/eui/eui.js" type="text/javascript"></script>
+		<script src="/xtzc/js/constants.js" type="text/javascript"></script>
+		<script src="index.js" type="text/javascript"></script>
+<!-- 		<script src="query.js" type="text/javascript"></script> -->
+		<script src="detail.js" type="text/javascript"></script>
+	</head>
+
+	<body ng-controller="euiController">	
+       	<div style="width:100%;height:100%;">
+			<eui-block title="查询条件">
+				<table class="eui-table" style="width:100%;height:100px;">
+					<tr style="height: 32px;">
+						<td style="text-align:right;width:5%;">service ：</td>
+						<td style="width: 25%;">
+							<input ng-model="entity.service" style="width:80%;" ng-disabled="isNotEdit" />
+						</td>
+						<td style="text-align:right;width:5%;">instance：</td>
+						<td style="width: 25%;">
+							<input ng-model="entity.instance" style="width:80%;" ng-disabled="isNotEdit" />
+						</td>
+						<td style="text-align:right;width:5%;">method：</td>
+						<td style="width: 25%;">
+							<eui-combo-checkbox width = "95%" select-height="85px"
+                                select-data="cbxData" selected-rows= "metData" disabled=disabled></eui-combo-checkbox>
+						</td>
+					</tr>
+
+					<tr style="height: 32px;">
+						<td style="text-align:right;width:5%;">servletPath：</td>
+						<td style="width: 25%;">
+							<input ng-model="entity.servletPath" style="width:80%;" ng-disabled="isNotEdit" />
+						</td>
+						<td style="text-align:right;width:5%;">host：</td>
+						<td style="width: 25%;">
+							<input ng-model="entity.host" style="width:80%;" ng-disabled="isNotEdit" />
+						</td>
+						<td style="text-align:right;width:5%;">localPort：</td>
+						<td style="width: 25%;">
+							<input ng-model="entity.localPort" style="width:95%;" ng-disabled="isNotEdit" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" class="" style="text-align: right;padding-right:20px;padding-bottom:5px;">
+							<eui-button icon-cls="eui-icon-inquire" ng-click="query()">查询</eui-button>
+						</td>
+					</tr>
+				</table>
+			</eui-block>
+			
+			<div style="width:100%;height:100%;">
+				<eui-grid grid-options="options" grid-data="data" grid-methods="gd_methods" ></eui-grid>
+			</div>
+		</div>
+	</body>
+</html>

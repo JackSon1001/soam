@@ -1,0 +1,8 @@
+<div class="Func" >
+    <ul>
+      <li ng-repeat="modal in modals" ng-class="[modal.icon,'Bg'+$index]"
+          ng-click="loadDialog({path: modal.path, id: modal.id, name: modal.name, icon: modal.icon + '-wTitle'})">
+        <a ng-bind="modal.name"></a>
+      </li>
+    </ul>
+</div>

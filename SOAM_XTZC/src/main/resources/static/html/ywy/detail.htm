@@ -1,0 +1,43 @@
+<!-- 
+/**
+ * 功能模块：系统支撑--》业务域管理--》编辑业务域
+ * 描      述：编辑业务域控制器
+ * 文件名称：detail.htm
+ * 创建   人： 周艳平
+ * 创建时间：2016年10月26日15:06:50
+ * 修改日志：
+ */
+ -->
+
+<div novalidate style="position: relative;" name="confForm">
+	<table style="margin: 10px auto;width:100%;" border="0">
+		<tr style="height: 32px;">
+			<td style="text-align: right;width: 30%;">业务名称：</td>
+			<td style="width: 60%;">
+				<input ng-model="ywy.name" style="width:100%;" ng-disabled="isNotEdit" />
+			</td>
+			<td><span style="color:red;"> *</span></td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align: right">状态：</td>
+			<td>
+				<eui-combo-checkbox style="float:left;" width="238px" select-height="100px" select-data="ywyztData" selected-rows="ywyztValue" disabled="isNotEdit"></eui-combo-checkbox>
+			</td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align: right">上级资源：</td>
+			<td><input ng-model="ywy.pid" style="width:100%;" ng-disabled="true" /></td>
+		</tr>
+		<tr style="height: 32px;">
+			<td style="text-align: right">备注：</td>
+			<td>
+				<textarea style="resize: none;width:100%;" rows="3" ng-model="ywy.bz" ng-disabled="isNotEdit"></textarea>
+			</td>
+		</tr>
+	</table>
+
+	<div class="modal-footer">
+		<button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">确定</button>
+		<button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+	</div>
+</div>

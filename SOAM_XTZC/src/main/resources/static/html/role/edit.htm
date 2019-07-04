@@ -1,0 +1,50 @@
+<!-- 
+/**
+ * 功能模块：系统支撑--》角色管理
+ * 描      述：编辑角色界面
+ * 文件名称：edit.htm
+ * 创建   人： 周艳平
+ * 创建时间： 2016年10月17日11:01:34
+ * 修改日志：
+ */
+ -->
+ 
+<div novalidate style="position: relative;"  name="confForm" >
+    <table style="margin: 0px;width:100%;">
+        <tr style="height: 36px;">
+        	<td style="text-align: right;width:30%;">角色名称：</td>
+            <td style="width:60%;padding-left:6px;">
+                <input style="width:100%;" ng-model="role.jsmc" ng-disabled="isNotEdit"/>
+            </td>
+            <td><span style="color:red;"> *</span></td>
+        </tr>
+        <tr style="height: 36px;">
+           <td style="text-align: right">状态：</td>
+           <td style="padding-left:6px;">
+            	<eui-combo-checkbox style="float:left;" width = "232px" select-height="50px"
+                     select-data="zyztData" selected-rows= "zyztValue" 
+                     disabled="isNotEdit"></eui-combo-checkbox>			    
+            </td>
+        </tr>        
+       <tr style="height: 36px;">
+           <td style="text-align: right">关联资源：</td>
+           <td style="padding-left:6px;">
+            	<eui-combo-tree width = "232px" height="27px" tree-height="250px" 
+            		tree-control = "my_tree" tree-data="nodeTree" disabled="isNotEdit"
+                	show-checkbox="true" options = "checkOptions"></eui-combo-tree>
+            </td>
+        </tr>
+        <tr style="height: 36px;">
+            <td style="text-align: right">备注：</td>
+            <td style="padding-left:6px;">            
+            	<textarea style="resize: none;width:100%;"  rows="3" 
+            		ng-model="role.bz" ng-disabled="isNotEdit"></textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" ng-model="role.roleid" ng-disabled="true"/>
+    <div class="modal-footer">
+        <button class="eui_msgbox_btn_ok" ng-click="ok()" ng-show="!isNotEdit">确定</button>
+        <button class="eui_msgbox_btn_cancel" ng-click="cancel()">取消</button>
+    </div>
+</div>
